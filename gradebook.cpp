@@ -22,3 +22,13 @@ Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  unsig
     this->final_project = final_project_input;
     this->final_exam = 0;
  }
+
+int Gradebook::lab_total(){
+    
+}
+int Gradebook::assignment_total(){
+
+}
+
+
+ 
