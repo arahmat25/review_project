@@ -104,7 +104,7 @@ int Gradebook::course_total(){
 
  void Gradebook::course(int number){
     //all grades within their respective categories and a course overall
-    if(number = 1){
+    if(number == 1){
        category("Lab", "No");
        category("Assignment", "No");
        category("Review Project", "No");
@@ -114,7 +114,7 @@ int Gradebook::course_total(){
        course_total();
     }
     //only category totals and course overall
-    else if(number = 2){
+    else if(number == 2){
        category("Lab", "Yes");
        category("Assignment", "Yes");
        category("Review Project", "Yes");
@@ -123,7 +123,7 @@ int Gradebook::course_total(){
        course_total();
     }
     //only the course overall
-    else if(number = 3){
+    else if(number == 3){
        course_total();
     }
 
