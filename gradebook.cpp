@@ -38,6 +38,14 @@ int Gradebook::assignment_total(){
     return sum;
 
 }
+
+int Gradebook::course_total(){
+    int cTotal = 0;
+
+    cTotal = lab_total() + assignment_total() + this-> review_project + this-> final_project + this-> final_exam;
+    
+    return cTotal;
+};
 //string has to be Lab or Assignment
 //prints Lab/Assignment and its number plus the grade gotton from 
  void Gradebook::individual(string name,int number){
@@ -84,5 +92,31 @@ int Gradebook::assignment_total(){
 
  }
 
+ void Gradebook::course(int number){
+    //all grades within their respective categories and a course overall
+    if(number = 1){
+       category("Lab", "No");
+       category("Assignment", "No");
+       category("Review Project", "No");
+       category("Final Project", "No");
+       category("Final Exam", "No");
+        //Course Overall
+       course_total();
+    }
+    //only category totals and course overall
+    else if(number = 2){
+       category("Lab", "Yes");
+       category("Assignment", "Yes");
+       category("Review Project", "Yes");
+       category("Final Project", "Yes");
+       category("Final Exam", "Yes");
+       course_total();
+    }
+    //only the course overall
+    else if(number = 3){
+       course_total();
+    }
+
+ }
 
  
