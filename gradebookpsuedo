@@ -1,0 +1,30 @@
+//constructor used if final exam is inputed
+    //lab input, assignment input, project input, final exam
+
+//constructor used if final exam is not inputed
+    ////lab input, assignment input, project input,
+//Calculate lab total
+    //iterate by vector size and add to sum
+//Calculate assignment total
+    //iterate by vector size and add to sum
+//Calculate project toal
+    //iterate by project size and add to sum
+
+//Individual grade print
+    //prints Lab/Assignment and its number plus the grade gotton from 
+
+//prints category and takes input on whether to return total or not
+
+        //print all lab grades if YN equals No, only lab total when YN equals YES
+
+        //print all lab grades if YN equals No, only lab total when YN equals YES
+        
+//calculate course total
+    //iterate by vector size and add to sum
+//course function
+
+    //all grades within their respective categories and a course overall
+
+    //only category totals and course overall
+
+    //only the course overall

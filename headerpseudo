@@ -1,0 +1,20 @@
+//gradebook class
+    //containers(vectors)
+        //lab
+        //assignment
+        //project
+    //int final exam
+
+    //constructors
+        //gradebook calculate with exam input
+        //gradebook calculate without exam input
+    
+    //totals
+        //lab
+        //assignment
+        //project
+        //course
+    //void functions to print
+        //individual grades
+        //category grades
+        //course grades

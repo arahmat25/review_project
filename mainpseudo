@@ -1,0 +1,34 @@
+    // Ensure the user inputs only ONE command line argument - Output terminal text stating the abort otherwise
+
+        // Assign the command line argument to string file_name
+
+        // Initiate line counter
+
+        // Initiate all containers needed
+
+        // Open file
+
+        // Check if the file is open, if open continue
+
+        // Create a string to hold each line
+    
+
+        // Loop through each line and assign values to the appropriate containers, increment line counter by one after each loop
+            //read data from file object and put it into string.
+            // If reading the first line of the file, convert each number in the string to an int and pass to vector 'labs'
+            
+            // If reading the second line of the file, convert each number in the string to an int and pass to vector 'assignments'
+           
+            // If reading the third line of the file, convert string to an integer and pass to 'review_project'
+            
+            // If reading the fourth line of the file, convert string to an integer and pass to 'final_exam'
+
+            // Count lines;
+
+        // If file does not open, output terminal text telling the user.
+
+    // If line count is equal to four, run the constructor that does not include final exam
+
+    // If line count is equal to five, run the constructor that does not include final exam
+
+    // Output all functions - specifics picked are hard coded, user not allowed to choose
