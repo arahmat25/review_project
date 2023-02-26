@@ -67,18 +67,28 @@ int Gradebook::course_total(){
     }
  }
  
- void Gradebook::catagory(string name){
+ void Gradebook::category(string name,string YN){
+    //print all lab grades if YN equals No, only lab total when YN equals YES
     if(name == "Lab"){
+        if(YN == "No"){
         for(int i = 0; i < labs.size(); i++){
         cout << "Lab " << (i +1) << ": " << labs[i] << endl;
     }
+        }
+        if(YN == "Yes"){
         cout<< "Lab Total:" << lab_total() << endl;
+        }
     }
     else if (name == "Assignment"){
+        //print all lab grades if YN equals No, only lab total when YN equals YES
+        if(YN == "No"){
         for(int i = 0; i < assignments.size(); i++){
         cout << "Assignment " << (i +1) << ": " << assignments[i] << endl;
     }
+        }
+        if(YN == "Yes"){
         cout<< "Assignment: " << assignment_total() << endl;
+        }
     }
     else if (name == "Review Project"){
         cout << "Review Project: " << this->review_project << endl; 
