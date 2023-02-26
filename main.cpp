@@ -6,21 +6,12 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
-    // Ensure the user inputs only ONE command line argument - Output terminal text stating the abort otherwise
-    Gradebook* gradebook;
-    // Assign the command line argument to string file_name
-    string file_name = argv[1];
+int read_file(const string& file_name, vector<int> &labs, vector<int> &assignments, vector<int> &projects ,unsigned int &final_exam){
+
     fstream newfile;
 
     // Initiate line counter
     int line_count = 0;
-
-    // Initiate all containers needed
-    vector<int> labs;
-    vector<int> assignments;
-    vector<int> projects;
-    unsigned int final_exam;
 
     // Open file
     newfile.open(file_name, std::ios::in);
@@ -74,6 +65,24 @@ int main(int argc, char* argv[]) {
     else{
         cout << "File did not open, ensure the correct file name was input" << endl;
     }
+    return line_count;
+
+}
+
+int main(int argc, char* argv[]) {
+    // Ensure the user inputs only ONE command line argument - Output terminal text stating the abort otherwise
+    Gradebook* gradebook;
+    // Assign the command line argument to string file_name
+    string file_name = argv[1];
+
+    // Initiate all containers needed
+    vector<int> labs;
+    vector<int> assignments;
+    vector<int> projects;
+    unsigned int final_exam;
+
+    // Read file and assign values to the appropriate containers
+    int line_count = read_file(file_name, labs, assignments, projects, final_exam);
 
     // If line count is equal to four, run the constructor that does not include final exam
     if (line_count == 4){
@@ -85,11 +94,10 @@ int main(int argc, char* argv[]) {
         gradebook = new Gradebook (labs, assignments, projects, final_exam);
     }
 
-
     // Output all functions - specifics picked are hard coded, user not allowed to choose
     cout << gradebook->assignment_total() << endl;
     cout << gradebook->lab_total()<< endl;
     gradebook->individual("Lab",4);
-    gradebook->category("Lab");
+    gradebook->category("Lab", "Yes");
     return 0;
 }
