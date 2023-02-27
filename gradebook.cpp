@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include "algorithm"
 using namespace std;
 
 // Constructor used to generate if there is final exam input
@@ -11,6 +12,7 @@ Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  vecto
     this->assignments = assignmentsInput;
     this->projects = projectsInput;
     this->final_exam = final_exam_input;
+    // Constructor Identity Number
     this->construct_used = 1;
     this->file_name = fname;
 }
@@ -21,6 +23,7 @@ Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput, vector
     this->assignments = assignmentsInput;
     this->projects = projectsInput;
     this->final_exam = 0;
+    // Constructor Identity Number
     this->construct_used = 2;
     this->file_name = fname;
 }
@@ -28,9 +31,13 @@ Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput, vector
 // Returns total of all lab grades
 int Gradebook::lab_total(){
     int sum = 0;
+    vector<int> copy =  labs;
+    sort(copy.begin(), copy.end());
     for(int i = 0; i < labs.size(); i++){
         sum += labs[i];
     }
+
+    sum = sum - copy[0] - copy[1];
     return sum;
 }
 
@@ -75,7 +82,8 @@ void Gradebook::individual(string name,int number){
 
 // Returns a category's individual grades and has the option of returning the category total
 void Gradebook::category(string name,string YN){
-    //print all lab grades if YN equals No, only lab total when YN equals YES
+
+    // Output all lab grades if YN equals 'No', Output category total if YN equals 'Yes'
     if(name == "Lab"){
         for(int i = 0; i < labs.size(); i++){
             cout << "Lab " << (i +1) << ": " << labs[i] << endl;
@@ -85,8 +93,8 @@ void Gradebook::category(string name,string YN){
         }
     }
 
+    // Output all assignment grades if YN equals 'No', Output category total if YN equals 'Yes'
     else if (name == "Assignment"){
-        //print all lab grades if YN equals No, only lab total when YN equals YES
         for(int i = 0; i < assignments.size(); i++){
             cout << "Assignment " << (i +1) << ": " << assignments[i] << endl;
         }
@@ -95,6 +103,7 @@ void Gradebook::category(string name,string YN){
         }
     }
 
+    // Output all project grades if YN equals 'No', Output category total if YN equals 'Yes'
     else if (name == "Projects"){
         for(int i = 0; i < projects.size(); i++){
             cout << "Project " << (i +1) << ": " << projects[i] << endl;
@@ -104,6 +113,7 @@ void Gradebook::category(string name,string YN){
         }
     }
 
+    // Output all final exam grade, ignore YN as there is only one exam grade
     else if (name == "Final Exam"){
         cout << "Final Exam: " << this->final_exam << endl;
     }
@@ -112,13 +122,17 @@ void Gradebook::category(string name,string YN){
 
 // Returns total grade for entire course - adds all totals together and final
 int Gradebook::course_total(){
-    int cTotal = 0;
-    cTotal = lab_total() + assignment_total() + project_total();
+
+    // Initialize holder for total points and add up all category totals, excluding final
+    int total_points = 0;
+    total_points = lab_total() + assignment_total() + project_total();
+
+    // If the first constructor is used, include final exam grade in the total points, otherwise ignore
     if (construct_used == 1) {
-        cTotal += this->final_exam;
+        total_points += this->final_exam;
     }
 
-    return cTotal;
+    return total_points;
 };
 
 // Returns three different outputs, the user chooses based on an integer selection of 1, 2, or 3.
@@ -134,20 +148,26 @@ void Gradebook::course(int number){
         //Course Overall
         cout << "Course Total: " << course_total() << endl;
     }
-        // Returns only category and course totals
+
+    // Returns only category and course totals
     else if(number == 2){
         cout << "Assignment Total: " << assignment_total() << endl;
         cout << "Lab Total: " << lab_total() << endl;
         cout << "Project Total: " <<project_total() << endl;
         cout << "Course Total: " << course_total() << endl;
+        if (construct_used == 1){
+            cout << "Exam Total: " << final_exam << endl;
+        }
     }
-        // Returns only course total
+
+    // Returns only course total
     else if(number == 3){
         cout << "Course Total: " << course_total() << endl;
     }
 
 }
 
+// Returns the corresponding letter grade of the course total depending on constructor used
 string Gradebook::letter_grade() {
 
     // Initiate string holder for letter grade
@@ -208,36 +228,44 @@ string Gradebook::letter_grade() {
     return letter_grade;
 }
 
+// Writes all the grades to the original file
 void Gradebook::write_file(){
+
     ofstream output_file(file_name);
 
+    // Check if the file is open, if it is continue
     if (output_file.is_open()){
+        // Write labs
         for(int i=0; i<labs.size(); i++){
             output_file<< labs[i]<<" ";
         }
         output_file << "\n";
-
+        // Write assignments
         for(int i=0; i<assignments.size(); i++){
             output_file<< assignments[i]<<" ";
         }
         output_file << "\n";
-
+        // Write projects
         for(int i=0; i<projects.size(); i++){
             output_file<< projects[i]<<" ";
         }
         output_file << "\n";
 
+        // Write final if first constructor is used
         if(construct_used == 1){
             output_file << final_exam << "";
             output_file << "\n";
         }
 
+        // Close the file
         output_file.close();
 
     }
 }
 
 void Gradebook::changeData(string name){
+
+    // If the user picks assignment, prompt a number and grade to change
     if(name == "Assignment"){
         int num;
         int gradeChange;
@@ -247,6 +275,8 @@ void Gradebook::changeData(string name){
         cin>> gradeChange;
         assignments[num - 1] = gradeChange;
     }
+
+    // If the user picks lab, prompt a number and grade to change
     if(name == "Lab"){
         int num2;
         int gradeChange2;
@@ -256,6 +286,8 @@ void Gradebook::changeData(string name){
         cin>> gradeChange2;
         labs[num2 - 1] = gradeChange2;
     }
+
+    // If the user picks project, prompt a number and grade to change
     if(name == "Projects"){
         int num3;
         int gradeChange3;
@@ -265,12 +297,15 @@ void Gradebook::changeData(string name){
         cin>> gradeChange3;
         projects[num3 - 1] = gradeChange3;
     }
+    // If the user picks final, prompt a number and grade to change
     if(name == "Final Exam"){
         int gradeChange4;
         cout<<"Enter new grade: "<<endl;
         cin>> gradeChange4;
         final_exam = gradeChange4;
     }
+
+    // Call the write file function and output change
     write_file();
 }
 

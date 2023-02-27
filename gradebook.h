@@ -5,6 +5,7 @@ using namespace std;
 
 class Gradebook{
 private:
+    // Initiate all constructor variables needed and constructor identifier
     vector<int> labs;
     vector<int> assignments;
     vector<int> projects;
@@ -13,6 +14,7 @@ private:
     string file_name;
 
 public:
+    // Initiate all functions needed
     Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  vector<int> projects, unsigned int final_exam_input, string fname);
     Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  vector<int> projects,string fname);
     int lab_total();
