@@ -18,3 +18,7 @@
         //individual grades
         //category grades
         //course grades
+ 
+    //char letter grade
+        //takes in course total
+        //returns letter grade
