@@ -21,6 +21,6 @@ public:
     void course(int number);
     void individual(string name,int number);
     void category(string name, string YN);
-    char letter_grade(int course_total);
+    string letter_grade();
 
 };

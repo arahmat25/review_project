@@ -101,6 +101,7 @@ int main(int argc, char* argv[]) {
     gradebook->individual("Lab",4);
     gradebook->category("Lab", "Yes");
     gradebook->course(3);
+    cout << gradebook->letter_grade() << endl;
 
     return 0;
 }

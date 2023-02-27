@@ -144,18 +144,62 @@ void Gradebook::course(int number){
 
 }
 
-char Gradebook::letter_grade(int cTotal) {
+string Gradebook::letter_grade() {
 
-    // Initiate integer holder for final grade
-    int final_grade = course_total() / 10;
+    // Initiate string holder for letter grade
+    string letter_grade;
+    // Calculate total points using course_total function
+    double cTotal = course_total();
+    // Initiate double holder for final grade
+    double final_grade;
 
     // Calculate final grade if student had to take final
     if (construct_used == 1){
-        final_grade = course_total() / 10;
+        final_grade = cTotal / 10;
     }
 
     // Calculate final grade if student did not have to take final
     if (construct_used == 2){
-
+        final_grade = cTotal / 9;
     }
+
+    // Calculate letter grade using final grade
+    if (final_grade > 94){
+        letter_grade = "A";
+    }
+    else if (final_grade > 90){
+        letter_grade = "A-";
+    }
+    else if (final_grade > 87){
+        letter_grade = "B+";
+    }
+    else if (final_grade > 83){
+        letter_grade = "B";
+    }
+    else if (final_grade > 80){
+        letter_grade = "B-";
+    }
+    else if (final_grade > 77){
+        letter_grade = "C+";
+    }
+    else if (final_grade > 73){
+        letter_grade = "C";
+    }
+    else if (final_grade > 70){
+        letter_grade = "C-";
+    }
+    else if (final_grade > 67){
+        letter_grade = "D+";
+    }
+    else if (final_grade > 63){
+        letter_grade = "D";
+    }
+    else if (final_grade > 60){
+        letter_grade = "D-";
+    }
+    else{
+        letter_grade = "F";
+    }
+
+    return letter_grade;
 }
