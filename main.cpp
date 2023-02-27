@@ -86,22 +86,96 @@ int main(int argc, char* argv[]) {
 
     // If line count is equal to four, run the constructor that does not include final exam
     if (line_count == 3){
-        gradebook = new Gradebook (labs, assignments, projects);
+        gradebook = new Gradebook (labs, assignments, projects,file_name);
     }
 
     // If line count is equal to five, run the constructor that does not include final exam
     if (line_count == 4){
-        gradebook = new Gradebook (labs, assignments, projects, final_exam);
+        gradebook = new Gradebook (labs, assignments, projects, final_exam, file_name);
     }
 
-    // Output all functions - specifics picked are hard coded, user not allowed to choose
-    cout << gradebook->assignment_total() << endl;
-    cout << gradebook->lab_total() << endl;
-    cout << gradebook->course_total() << endl;
-    gradebook->individual("Lab",4);
-    gradebook->category("Lab", "Yes");
-    gradebook->course(3);
-    cout << gradebook->letter_grade() << endl;
+    // Initialize integer holder for option number;
+    int option;
+
+    // Loop through the option menu unless the user chooses to exit the program (option 7)
+    while (option != 7) {
+        // OPTION MENU
+        cout << "Here are the options for this program: " << "\n"
+             << "[1] - Output an individual deliverable and it's corresponding grade." << "\n"
+             << "[2] - Output a category, all grades within that category, and it's total." << "\n"
+             << "[3] - Output all individual grades, the course total, and it's corresponding letter grade." << "\n"
+             << "[4] - Output all category totals, the course total, and it's corresponding letter grade." << "\n"
+             << "[5] - Output the course total and it's corresponding letter grade." << "\n"
+             << "[6] - Change a grade." << "\n"
+             << "[7] - Exit the program." << "\n"
+             << "\n" << "Which option would you like to choose? Please enter the number: ";
+
+        // User inputs option
+        cin >> option;
+
+        // Option 1 - Output an individual deliverable and it's corresponding grade
+        if (option == 1){
+            string deliverable_name;
+            int deliverable_num;
+            cout << "Which category would you like? Options are 'Lab', 'Assignment', 'Projects', or 'Final Exam' . Please enter exactly as typed. " << endl;
+            cin >> deliverable_name;
+            cout << "Which deliverable would you like? Options are 1-12 for labs, 1-4 for assignments, 1-2 for projects, and 1 for final exam. Please do not exceed these ranges. " << endl;
+            cin >> deliverable_num;
+            gradebook->individual(deliverable_name, deliverable_num);
+            cout << endl;
+        }
+
+        // Option 2 - Output a category, all grades within that category, and it's total
+        else if (option == 2){
+            string category;
+            cout << "Which category would you like? Options are 'Lab', 'Assignment', 'Projects', or 'Final Exam' . Please enter exactly as typed. " << endl;
+            cin >> category;
+            gradebook->category(category, "Yes");
+            cout << endl;
+        }
+
+        // Option 3 - Output all individual grades, the course total, and it's corresponding letter grade
+        else if (option == 3){
+            gradebook->course(1);
+            cout << "Letter Grade: " << gradebook->letter_grade() << endl;
+            cout << endl;
+        }
+
+        // Option 4 - Output all category totals, the course total, and it's corresponding letter grade
+        else if (option == 4){
+            gradebook->course(2);
+            cout << "Letter Grade: " << gradebook->letter_grade() << endl;
+            cout << endl;
+        }
+
+        // Option 5 - Output the course total and it's corresponding letter grade
+        else if (option == 5){
+            gradebook->course(3);
+            cout << "Letter Grade: " << gradebook->letter_grade() << endl;
+            cout << endl;
+        }
+
+        // Option 6 - Change a grade
+        else if (option == 6){
+            string category;
+            cout << "Which category would you like to change? Options are 'Lab', 'Assignment', 'Projects', or 'Final Exam' . Please enter exactly as typed. " << endl;
+            cin >> category;
+            gradebook->changeData(category);
+            cout << endl;
+        }
+
+        // Option 7 - Exit the program
+        else if (option == 7){
+            cout << "Exiting program, goodbye." << endl;
+            cout << endl;
+        }
+
+        // Output if user does not enter an integer 1-7
+        else {
+            cout << "Invalid option, please try again." << endl;
+            cout << endl;
+        }
+    }
 
     return 0;
 }

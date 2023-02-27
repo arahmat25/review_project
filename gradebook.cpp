@@ -1,24 +1,28 @@
 #include <iostream>
 #include "gradebook.h"
 #include <vector>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 // Constructor used to generate if there is final exam input
-Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  vector<int> projectsInput, unsigned int final_exam_input){
+Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  vector<int> projectsInput, unsigned int final_exam_input,string fname){
     this->labs = labsInput;
     this->assignments = assignmentsInput;
     this->projects = projectsInput;
     this->final_exam = final_exam_input;
     this->construct_used = 1;
+    this->file_name = fname;
 }
 
 // Constructor used to generate if there is no final exam input
-Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput, vector<int> projectsInput){
+Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput, vector<int> projectsInput,string fname){
     this->labs = labsInput;
     this->assignments = assignmentsInput;
     this->projects = projectsInput;
     this->final_exam = 0;
     this->construct_used = 2;
+    this->file_name = fname;
 }
 
 // Returns total of all lab grades
@@ -203,3 +207,70 @@ string Gradebook::letter_grade() {
 
     return letter_grade;
 }
+
+void Gradebook::write_file(){
+    ofstream output_file(file_name);
+
+    if (output_file.is_open()){
+        for(int i=0; i<labs.size(); i++){
+            output_file<< labs[i]<<" ";
+        }
+        output_file << "\n";
+
+        for(int i=0; i<assignments.size(); i++){
+            output_file<< assignments[i]<<" ";
+        }
+        output_file << "\n";
+
+        for(int i=0; i<projects.size(); i++){
+            output_file<< projects[i]<<" ";
+        }
+        output_file << "\n";
+
+        if(construct_used == 1){
+            output_file << final_exam << "";
+            output_file << "\n";
+        }
+
+        output_file.close();
+
+    }
+}
+
+void Gradebook::changeData(string name){
+    if(name == "Assignment"){
+        int num;
+        int gradeChange;
+        cout<<"Enter assignment number: "<<endl;
+        cin>> num;
+        cout<<"Enter new grade: "<<endl;
+        cin>> gradeChange;
+        assignments[num - 1] = gradeChange;
+    }
+    if(name == "Lab"){
+        int num2;
+        int gradeChange2;
+        cout<<"Enter lab number: "<<endl;
+        cin>> num2;
+        cout<<"Enter new grade: "<<endl;
+        cin>> gradeChange2;
+        labs[num2 - 1] = gradeChange2;
+    }
+    if(name == "Projects"){
+        int num3;
+        int gradeChange3;
+        cout<<"Enter project number: "<<endl;
+        cin>> num3;
+        cout<<"Enter new grade: "<<endl;
+        cin>> gradeChange3;
+        projects[num3 - 1] = gradeChange3;
+    }
+    if(name == "Final Exam"){
+        int gradeChange4;
+        cout<<"Enter new grade: "<<endl;
+        cin>> gradeChange4;
+        final_exam = gradeChange4;
+    }
+    write_file();
+}
+
