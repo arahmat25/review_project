@@ -6,7 +6,7 @@ Project summary:
 - This project allows the user to calculate their grade for CSC 212 using different menu options that ouput various grade summaries. The user also has the ability to change their grades to calculate any possible grades they might need to achieve the grade they desire. The edits they make are directly changed in the file they used to input their grades. The code allows the user to pick different display options for their grades and edit them until they choose to exit the program. There is only one command line arguement for this program and the user does not have to call any functions, they just have to follow menu prompts for their desired output. 
 
 Planning: 
-- This psuedocode was drawn up before we started coding, so there exists variations between it and our finished code. Some of the functionality we decided to implement in the end stages of our project do not appear in the pseudo code. To avoid clogging this page and make it easily readable, the psuedo code for each file can be found in the main branch of this repository. 
+- This psuedocode was drawn up before we started coding, so there exists variations between it and our finished code. Some of the functionality we decided to implement in the end stages of our project do not appear in the pseudo code. To avoid clogging this page and make it easily readable, the psuedo code for each file can be found in the main branch of this repository. They will be submitted as seperate PDFs on gradescope.
 
 Compiler Instructions:
 - For CLion: The only thing the user must do is input the file name into the run configuration and hit run, it is the only command line argument.
