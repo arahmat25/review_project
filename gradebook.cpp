@@ -9,6 +9,7 @@ Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  vecto
     this->assignments = assignmentsInput;
     this->projects = projectsInput;
     this->final_exam = final_exam_input;
+    this->construct_used = 1;
 }
 
 // Constructor used to generate if there is no final exam input
@@ -17,6 +18,7 @@ Gradebook::Gradebook(vector<int> labsInput, vector<int> assignmentsInput, vector
     this->assignments = assignmentsInput;
     this->projects = projectsInput;
     this->final_exam = 0;
+    this->construct_used = 2;
 }
 
 // Returns total of all lab grades
@@ -91,7 +93,7 @@ void Gradebook::category(string name,string YN){
 
     else if (name == "Projects"){
         for(int i = 0; i < projects.size(); i++){
-            cout << "Project " << (i +1) << ": " << assignments[i] << endl;
+            cout << "Project " << (i +1) << ": " << projects[i] << endl;
         }
         if(YN == "Yes"){
             cout<< "Projects: " << project_total() << endl;
@@ -107,7 +109,11 @@ void Gradebook::category(string name,string YN){
 // Returns total grade for entire course - adds all totals together and final
 int Gradebook::course_total(){
     int cTotal = 0;
-    cTotal = lab_total() + assignment_total() + project_total() + this-> final_exam;
+    cTotal = lab_total() + assignment_total() + project_total();
+    if (construct_used == 1) {
+        cTotal += this->final_exam;
+    }
+
     return cTotal;
 };
 
@@ -117,22 +123,39 @@ void Gradebook::course(int number){
     if(number == 1){
         category("Lab", "No");
         category("Assignment", "No");
-        category("Review Project", "No");
-        category("Final Project", "No");
-        category("Final Exam", "No");
+        category("Projects", "No");
+        if (construct_used == 1){
+            category("Final Exam", "No");
+        }
         //Course Overall
-        course_total();
+        cout << "Course Total: " << course_total() << endl;
     }
         // Returns only category and course totals
     else if(number == 2){
-        cout << assignment_total() << endl;
-        cout << lab_total() << endl;
-        cout << project_total() << endl;
-        course_total();
+        cout << "Assignment Total: " << assignment_total() << endl;
+        cout << "Lab Total: " << lab_total() << endl;
+        cout << "Project Total: " <<project_total() << endl;
+        cout << "Course Total: " << course_total() << endl;
     }
         // Returns only course total
     else if(number == 3){
-        course_total();
+        cout << "Course Total: " << course_total() << endl;
     }
 
+}
+
+char Gradebook::letter_grade(int cTotal) {
+
+    // Initiate integer holder for final grade
+    int final_grade = course_total() / 10;
+
+    // Calculate final grade if student had to take final
+    if (construct_used == 1){
+        final_grade = course_total() / 10;
+    }
+
+    // Calculate final grade if student did not have to take final
+    if (construct_used == 2){
+
+    }
 }

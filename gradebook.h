@@ -9,6 +9,7 @@ private:
     vector<int> assignments;
     vector<int> projects;
     unsigned int final_exam;
+    int construct_used;
 
 public:
     Gradebook(vector<int> labsInput, vector<int> assignmentsInput,  vector<int> projects, unsigned int final_exam_input);
@@ -20,5 +21,6 @@ public:
     void course(int number);
     void individual(string name,int number);
     void category(string name, string YN);
+    char letter_grade(int course_total);
 
 };

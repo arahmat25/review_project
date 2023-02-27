@@ -61,7 +61,7 @@ int read_file(const string& file_name, vector<int> &labs, vector<int> &assignmen
         }
     }
 
-        // If file does not open, output terminal text telling the user.
+    // If file does not open, output terminal text telling the user.
     else{
         cout << "File did not open, ensure the correct file name was input" << endl;
     }
@@ -85,19 +85,22 @@ int main(int argc, char* argv[]) {
     int line_count = read_file(file_name, labs, assignments, projects, final_exam);
 
     // If line count is equal to four, run the constructor that does not include final exam
-    if (line_count == 4){
+    if (line_count == 3){
         gradebook = new Gradebook (labs, assignments, projects);
     }
 
     // If line count is equal to five, run the constructor that does not include final exam
-    if (line_count == 5){
+    if (line_count == 4){
         gradebook = new Gradebook (labs, assignments, projects, final_exam);
     }
 
     // Output all functions - specifics picked are hard coded, user not allowed to choose
     cout << gradebook->assignment_total() << endl;
-    cout << gradebook->lab_total()<< endl;
+    cout << gradebook->lab_total() << endl;
+    cout << gradebook->course_total() << endl;
     gradebook->individual("Lab",4);
     gradebook->category("Lab", "Yes");
+    gradebook->course(3);
+
     return 0;
 }
