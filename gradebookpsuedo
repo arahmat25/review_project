@@ -28,3 +28,31 @@
     //only category totals and course overall
 
     //only the course overall
+//letter grade 
+    //takes int course grade
+        if grade > 93
+            grade = A
+        if 93>= grade > 89    
+            grade = A-
+        if 89>= grade > 86
+            grade = B+
+        if 86>= grade > 82
+            grade = B
+        if 82>= grade > 79
+            grade = B-
+        if 79>= grade > 76
+            grade = C+
+        if 76>= grade > 72
+            grade = C
+        if 72>= grade > 69
+            grade = C-
+        if 69>= grade > 66
+            grade = D+
+        if 66>= grade > 62
+            grade = D
+        if 62>= grade > 59
+            grade = D-
+        if 59 >= grade
+            grade = F
+        
+        
