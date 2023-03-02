@@ -191,34 +191,34 @@ string Gradebook::letter_grade() {
     if (final_grade > 94){
         letter_grade = "A";
     }
-    else if (final_grade > 90){
+    else if (final_grade >= 90){
         letter_grade = "A-";
     }
-    else if (final_grade > 87){
+    else if (final_grade >= 87){
         letter_grade = "B+";
     }
-    else if (final_grade > 83){
+    else if (final_grade >= 83){
         letter_grade = "B";
     }
-    else if (final_grade > 80){
+    else if (final_grade >= 80){
         letter_grade = "B-";
     }
-    else if (final_grade > 77){
+    else if (final_grade >= 77){
         letter_grade = "C+";
     }
-    else if (final_grade > 73){
+    else if (final_grade >= 73){
         letter_grade = "C";
     }
-    else if (final_grade > 70){
+    else if (final_grade >= 70){
         letter_grade = "C-";
     }
-    else if (final_grade > 67){
+    else if (final_grade >= 67){
         letter_grade = "D+";
     }
-    else if (final_grade > 63){
+    else if (final_grade >= 63){
         letter_grade = "D";
     }
-    else if (final_grade > 60){
+    else if (final_grade >= 60){
         letter_grade = "D-";
     }
     else{
